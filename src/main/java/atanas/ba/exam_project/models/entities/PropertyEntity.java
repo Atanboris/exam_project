@@ -11,18 +11,28 @@ public class PropertyEntity extends BaseEntity {
 
     @Column
     private long price;
+    private  String propertyAddress;
+
     @Enumerated(EnumType.STRING)
     private PropertyType propertyType;
     @Column(name = "bedroom_amount", nullable = false)
     private int BedroomAmount;
     @Column(name = "bathroom_amount", nullable = false)
     private int BathroomAmount;
-    @Column(name = "bedroom_amount", nullable = false)
-    private int areaSize;
+    @Column(name = "area_size", nullable = false)
+    private double areaSize;
     @Column(nullable = false)
     private int floor;
     @Column(name = "parking_spots", nullable = false)
     private int parkingSpots;
+
+    public String getPropertyAddress() {
+        return propertyAddress;
+    }
+
+    public void setPropertyAddress(String propertyAddress) {
+        this.propertyAddress = propertyAddress;
+    }
 
     public long getPrice() {
         return price;
@@ -56,7 +66,7 @@ public class PropertyEntity extends BaseEntity {
         BathroomAmount = bathroomAmount;
     }
 
-    public int getAreaSize() {
+    public double getAreaSize() {
         return areaSize;
     }
 
