@@ -9,10 +9,12 @@ import jakarta.persistence.Enumerated;
 @Entity(name = "properties")
 public class PropertyEntity extends BaseEntity {
 
-    @Column
-    private long price;
-    private  String propertyAddress;
+    //TODO (Validations)
 
+    @Column(name = "price")
+    private long price;
+    @Column(name = "property_address")
+    private  String propertyAddress;
     @Enumerated(EnumType.STRING)
     private PropertyType propertyType;
     @Column(name = "bedroom_amount", nullable = false)
@@ -20,11 +22,21 @@ public class PropertyEntity extends BaseEntity {
     @Column(name = "bathroom_amount", nullable = false)
     private int BathroomAmount;
     @Column(name = "area_size", nullable = false)
-    private double areaSize;
+    private int areaSize;
     @Column(nullable = false)
     private int floor;
     @Column(name = "parking_spots", nullable = false)
     private int parkingSpots;
+    @Column(name = "property_image")
+    private String propertyImage;
+
+    public String getPropertyImage() {
+        return propertyImage;
+    }
+
+    public void setPropertyImage(String propertyImage) {
+        this.propertyImage = propertyImage;
+    }
 
     public String getPropertyAddress() {
         return propertyAddress;
@@ -66,7 +78,7 @@ public class PropertyEntity extends BaseEntity {
         BathroomAmount = bathroomAmount;
     }
 
-    public double getAreaSize() {
+    public int getAreaSize() {
         return areaSize;
     }
 

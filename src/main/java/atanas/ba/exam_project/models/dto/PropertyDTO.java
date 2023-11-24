@@ -18,9 +18,10 @@ public class PropertyDTO {
     private String propertyAddress;
     private int bedroomAmount;
     private int bathroomAmount;
-    private double areaSize;
+    private int areaSize;
     private int floor;
     private int parkingSpots;
+    private String propertyImage;
 
     public PropertyDTO(PropertyEntity property) {
         this.propertyAddress = property.getPropertyAddress();
@@ -31,6 +32,15 @@ public class PropertyDTO {
         this.parkingSpots = property.getParkingSpots();
         this.price = property.getPrice();
         this.propertyType = property.getPropertyType();
+        this.propertyImage = property.getPropertyImage();
+    }
+
+    public String getPropertyImage() {
+        return propertyImage;
+    }
+
+    public void setPropertyImage(String propertyImage) {
+        this.propertyImage = propertyImage;
     }
 
     public long getPrice() {
@@ -73,11 +83,11 @@ public class PropertyDTO {
         this.bathroomAmount = bathroomAmount;
     }
 
-    public double getAreaSize() {
+    public int getAreaSize() {
         return areaSize;
     }
 
-    public void setAreaSize(double areaSize) {
+    public void setAreaSize(int areaSize) {
         this.areaSize = areaSize;
     }
 
