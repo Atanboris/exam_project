@@ -12,16 +12,18 @@
             <div class="col-12">
                 <nav class="main-nav">
                     <!-- ***** Logo Start ***** -->
-                    <a href="index.html" class="logo">
-                        <h1>Villa</h1>
+                    <a th:href="@{/}" class="logo">
+                        <h1>Villaton</h1>
                     </a>
                     <!-- ***** Logo End ***** -->
                     <!-- ***** Menu Start ***** -->
                     <ul class="nav">
-                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a th:href="@{/}" class="active">Home</a></li>
+                        <li><a th:href="@{/login}">Login</a></li>
+                        <li><a th:href="@{/register}">Register</a></li>
                         <li><a th:href="@{/properties}">Properties</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#"><i class="fa fa-calendar"></i> Schedule a visit</a></li>
+                        <li><a th:href="@{/contact}">Contact Us</a></li>
+                        <li><a th:href="@{/properties}"><i class="fa fa-calendar"></i> Schedule a visit</a></li>
                     </ul>
                     <a class='menu-trigger'>
                         <span>Menu</span>
