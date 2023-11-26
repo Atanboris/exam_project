@@ -63,17 +63,25 @@
 
 <header th:replace="~{fragments/commons::header}"></header>
 
-<form>
+<form th:method="post"
+      th:action="@{/users/login}">
+    <!-- Bad credentials error -->
+    <p th:if="${bad_credentials}" class="errors alert alert-danger">
+        Invalid username or password.
+    </p>
+
     <!-- Email input -->
     <div class="form-outline mb-4">
-        <input type="email" id="form2Example1" class="form-control" />
-        <label class="form-label" for="form2Example1">Email address</label>
+        <input type="email" id="email"
+               th:value="${email}"  class="form-control" />
+        <label class="form-label" for="email">Email address</label>
     </div>
 
     <!-- Password input -->
     <div class="form-outline mb-4">
-        <input type="password" id="form2Example2" class="form-control" />
-        <label class="form-label" for="form2Example2">Password</label>
+        <input type="password" id="password" value="password"
+               min = "2" max="20" class="form-control" />
+        <label class="form-label" for="password">Password</label>
     </div>
 
     <!-- 2 column grid layout for inline styling -->

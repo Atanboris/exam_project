@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class UserRegisterController {
-    @GetMapping("/register")
+    @GetMapping("/users/register")
     public ModelAndView register(){
         return new ModelAndView("register");
     }
