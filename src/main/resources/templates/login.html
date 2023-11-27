@@ -1,128 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
+  <meta charset="UTF-8">
+  <title>HTML5 Login Form with validation Example</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" th:href="@{/css/style.css}">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-    <title>Villa Agency - Real Estate HTML5 Template</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-villa-agency.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
-    <!--
-
-    TemplateMo 591 villa agency
-
-    https://templatemo.com/tm-591-villa-agency
-
-    -->
 </head>
 <body>
-<!--&lt;!&ndash; ***** Preloader Start ***** &ndash;&gt;-->
-<!--<div id="js-preloader" class="js-preloader">-->
-<!--    <div class="preloader-inner">-->
-<!--        <span class="dot"></span>-->
-<!--        <div class="dots">-->
-<!--            <span></span>-->
-<!--            <span></span>-->
-<!--            <span></span>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--&lt;!&ndash; ***** Preloader End ***** &ndash;&gt;-->
-
-<div class="sub-header">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-8">
-                <ul class="info">
-                    <li><i class="fa fa-envelope"></i> info@company.com</li>
-                    <li><i class="fa fa-map"></i> Sunny Isles Beach, FL 33160</li>
-                </ul>
-            </div>
-            <div class="col-lg-4 col-md-4">
-                <ul class="social-links">
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="https://x.com/minthu" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-
-<header th:replace="~{fragments/commons::header}"></header>
-
-<form th:method="post"
-      th:action="@{/users/login}">
-    <!-- Bad credentials error -->
-    <p th:if="${bad_credentials}" class="errors alert alert-danger">
-        Invalid username or password.
+<!-- partial:index.partial.html -->
+<div id="login-form-wrap">
+  <h2>Login</h2>
+  <form id="login-form">
+    <p>
+    <input type="text" id="username" name="username" placeholder="Username" required><i class="validation"><span></span><span></span></i>
     </p>
-
-    <!-- Email input -->
-    <div class="form-outline mb-4">
-        <input type="email" id="email"
-               th:value="${email}"  class="form-control" />
-        <label class="form-label" for="email">Email address</label>
-    </div>
-
-    <!-- Password input -->
-    <div class="form-outline mb-4">
-        <input type="password" id="password" value="password"
-               min = "2" max="20" class="form-control" />
-        <label class="form-label" for="password">Password</label>
-    </div>
-
-    <!-- 2 column grid layout for inline styling -->
-    <div class="row mb-4">
-        <div class="col d-flex justify-content-center">
-            <!-- Checkbox -->
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-                <label class="form-check-label" for="form2Example31"> Remember me </label>
-            </div>
-        </div>
-
-        <div class="col">
-            <!-- Simple link -->
-            <a href="#!">Forgot password?</a>
-        </div>
-    </div>
-
-    <!-- Submit button -->
-    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
-
-    <!-- Register buttons -->
-    <div class="text-center">
-        <p>Not a member? <a href="#!">Register</a></p>
-        <p>or sign up with:</p>
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-facebook-f"></i>
-        </button>
-
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-google"></i>
-        </button>
-
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-twitter"></i>
-        </button>
-
-        <button type="button" class="btn btn-link btn-floating mx-1">
-            <i class="fab fa-github"></i>
-        </button>
-    </div>
-</form>
+    <p>
+    <input type="email" id="email" name="email" placeholder="Email Address" required><i class="validation"><span></span><span></span></i>
+    </p>
+    <p>
+    <input type="submit" id="login" value="Login">
+    </p>
+  </form>
+  <div id="create-account-wrap">
+    <p>Not a member? <a href="#">Create Account</a><p>
+  </div><!--create-account-wrap-->
+</div><!--login-form-wrap-->
+<!-- partial -->
+  
 </body>
 </html>
