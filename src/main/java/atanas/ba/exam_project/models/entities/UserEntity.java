@@ -1,6 +1,9 @@
 package atanas.ba.exam_project.models.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +17,11 @@ public class UserEntity extends BaseEntity {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<UserRoleEntity> roles = new ArrayList<>();
+    @NotNull
+    @Size(min = 2, max = 40)
     private String name;
+    @Email
+    @NotNull
     private String email;
     private String password;
 

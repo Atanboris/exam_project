@@ -1,7 +1,11 @@
 package atanas.ba.exam_project.config;
 
+import atanas.ba.exam_project.models.bindingModels.RegisterUserBindingModel;
+import atanas.ba.exam_project.models.entities.UserEntity;
 import atanas.ba.exam_project.repositories.UserRepository;
 import atanas.ba.exam_project.service.impl.VillatonUserDetailsService;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -9,20 +13,23 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableMethodSecurity
-public class SecurityConfig{
+public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(
-            authorizeRequest -> authorizeRequest
-                    .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                    .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
-                    .requestMatchers("/", "/users/login", "/users/register", "/users/login-error", "/home").permitAll()
+                authorizeRequest -> authorizeRequest
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
+                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error", "/home").permitAll()
+                        .requestMatchers("/error").permitAll()
+                        .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {
                     formLogin
@@ -44,12 +51,20 @@ public class SecurityConfig{
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new VillatonUserDetailsService(userRepository);
     }
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return Pbkdf2PasswordEncoder.defaultsForSpringSecurity_v5_8();
-        }
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
+
+    @Bean
+    public ModelMapper modelMapper() {
+
+        ModelMapper modelMapper = new ModelMapper();
+
+        return modelMapper;
+    }
+}
 
 
 

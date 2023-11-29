@@ -13,7 +13,7 @@ public class UserLoginController {
     return new ModelAndView("login");
     }
 
-    @PostMapping
+    @PostMapping("users/login-error")
     public ModelAndView onFailure(@ModelAttribute("email") String email){
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("email",email);
