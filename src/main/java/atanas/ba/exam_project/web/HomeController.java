@@ -10,9 +10,9 @@ public class HomeController {
     public ModelAndView index(){
         return new ModelAndView("index");
     }
-    @GetMapping("/contact")
+    @GetMapping("/home")
     public ModelAndView contact(){
-        return new ModelAndView("contact");
+        return new ModelAndView("home");
     }
 
 }
