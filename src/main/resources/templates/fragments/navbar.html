@@ -13,7 +13,7 @@
 
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
-                <th:block sec:authorize="isAuthenticated()">
+                <th:block sec:authorize="!isAuthenticated()">
                 <li  class="nav-item col-md-4">
                     <a class="nav-link active h5 my-text-color" href="/users/login">Login</a>
                 </li>
@@ -22,9 +22,9 @@
                     <a class="nav-link my-text-color active h5 " href="/users/register">Register</a>
                 </li>
                 </th:block>
+                <th:block sec:authorize="isAuthenticated()">
                 <li  class="nav-item col-md-4" sec:authorize="isAuthenticated()" >
                     <div class="form-inline my-2 my-lg-0">
-<!--                    <a class="nav-link my-text-color active h5 " href="/users/logout" >Logout</a>-->
                     <div class="my-text-color">
                         Welcome, <th:block sec:authentication="name"></th:block>!
                     </div>
@@ -34,6 +34,7 @@
                     </form>
                     </div>
                 </li >
+                </th:block>
             </ul>
         </div>
     </nav>
