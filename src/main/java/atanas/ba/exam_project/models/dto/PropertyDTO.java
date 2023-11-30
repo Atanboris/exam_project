@@ -19,7 +19,6 @@ public class PropertyDTO {
     private int bedroomAmount;
     private int bathroomAmount;
     private int areaSize;
-    private int floor;
     private int parkingSpots;
     private String propertyImage;
 
@@ -28,7 +27,6 @@ public class PropertyDTO {
         this.bedroomAmount = property.getBedroomAmount();
         this.bathroomAmount = property.getBathroomAmount();
         this.areaSize = property.getAreaSize();
-        this.floor = property.getFloor();
         this.parkingSpots = property.getParkingSpots();
         this.price = property.getPrice();
         this.propertyType = property.getPropertyType();
@@ -91,13 +89,6 @@ public class PropertyDTO {
         this.areaSize = areaSize;
     }
 
-    public int getFloor() {
-        return floor;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
 
     public int getParkingSpots() {
         return parkingSpots;

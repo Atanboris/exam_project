@@ -10,4 +10,9 @@ public class PropertyController {
     public ModelAndView propertyDetails(){
         return new ModelAndView("property-details");
     }
+    @GetMapping("/property/add")
+    public ModelAndView addProperty(){
+        return new ModelAndView("add-property");
+    }
 }
+

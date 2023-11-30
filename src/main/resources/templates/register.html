@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/navbar}"></header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
+
+    <form class="mx-auto w-25 bg-blur rounded"
+          th:method="POST"
+          th:action="@{/users/register}"
+          th:object="${registerUserBindingModel}">
+
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2 text-white">Name</label>
+            </div>
+            <input type="text" class="form-control" id="name" name="name"
+                   th:field="*{name}"
+            th:errorclass="bg-danger"/>
+            <small th:errors="*{name}" class="text-danger">Name error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center"
+                 >
+                <label  for="email" class="h4 mb-2">Email</label>
+            </div>
+            <input th:field="*{email}"
+                   th:errorclass="bg-danger" type="email" class="form-control" id="email" name="email"/>
+            <small th:errors="*{email}" class="text-danger">Email error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="password" class="h4 mb-2">Password</label>
+            </div>
+            <input th:field="*{password}"
+                   th:errorclass="bg-danger" type="password" class="form-control" id="password" name="password"/>
+            <small th:errors="*{password}" class="text-danger">Password error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+            </div>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                   th:field="*{confirmPassword}"
+                   th:classappend="${#fields.hasErrors('password')} ? 'bg-danger'"/>
+<!--            <small class="text-danger">Password error message</small>-->
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Register">Register</button>
+        </div>
+
+    </form>
+</main>
+<footer th:replace="~{fragments/footer}"></footer>
+</body>
+</html>

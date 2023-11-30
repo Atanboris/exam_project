@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg bg-nav rounded" th:fragment>
+        <a class="nav-link my-text-color active h5 " href="/">Villaton</a>
+        <a class="nav-link my-text-color active h5 " href="/property/add"
+           sec:authorize="isAuthenticated()" >Add New Property</a>
+
+        <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+            <ul class="navbar-nav row">
+                <th:block sec:authorize="isAuthenticated()">
+                <li  class="nav-item col-md-4">
+                    <a class="nav-link active h5 my-text-color" href="/users/login">Login</a>
+                </li>
+
+                <li class="nav-item col-md-4"  >
+                    <a class="nav-link my-text-color active h5 " href="/users/register">Register</a>
+                </li>
+                </th:block>
+                <li  class="nav-item col-md-4" sec:authorize="isAuthenticated()" >
+                    <div class="form-inline my-2 my-lg-0">
+<!--                    <a class="nav-link my-text-color active h5 " href="/users/logout" >Logout</a>-->
+                    <div class="my-text-color">
+                        Welcome, <th:block sec:authentication="name"></th:block>!
+                    </div>
+                    <form th:method="post"
+                          th:action="@{/users/logout}">
+                        <input type="submit" class="btn btn-link" value="Logout"/>
+                    </form>
+                    </div>
+                </li >
+            </ul>
+        </div>
+    </nav>
+</header>
+</body>
+</html>

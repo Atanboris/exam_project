@@ -23,8 +23,6 @@ public class PropertyEntity extends BaseEntity {
     private int BathroomAmount;
     @Column(name = "area_size", nullable = false)
     private int areaSize;
-    @Column(nullable = false)
-    private int floor;
     @Column(name = "parking_spots", nullable = false)
     private int parkingSpots;
     @Column(name = "property_image")
@@ -86,13 +84,6 @@ public class PropertyEntity extends BaseEntity {
         this.areaSize = areaSize;
     }
 
-    public int getFloor() {
-        return floor;
-    }
-
-    public void setFloor(int floor) {
-        this.floor = floor;
-    }
 
     public int getParkingSpots() {
         return parkingSpots;

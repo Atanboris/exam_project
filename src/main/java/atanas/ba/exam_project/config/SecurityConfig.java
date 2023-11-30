@@ -1,11 +1,10 @@
 package atanas.ba.exam_project.config;
 
-import atanas.ba.exam_project.models.bindingModels.RegisterUserBindingModel;
-import atanas.ba.exam_project.models.entities.UserEntity;
+
+import atanas.ba.exam_project.models.enums.UserRoleEnum;
 import atanas.ba.exam_project.repositories.UserRepository;
 import atanas.ba.exam_project.service.impl.VillatonUserDetailsService;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.TypeMap;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +14,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -29,6 +27,7 @@ public class SecurityConfig {
                         .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                         .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
                         .requestMatchers("/error").permitAll()
+//                        .requestMatchers("/property/add").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {
