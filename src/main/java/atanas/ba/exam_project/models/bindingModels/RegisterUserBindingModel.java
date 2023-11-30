@@ -1,5 +1,6 @@
 package atanas.ba.exam_project.models.bindingModels;
 
+import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -9,6 +10,7 @@ public class RegisterUserBindingModel {
     private String name;
     @Email
     @NotBlank(message = "Email cannot be empty!")
+    @Column(unique = true)
     private String email;
     @Size(min = 3, max = 20,message = "Password length must be between 3 and 20 characters!")
     private String password;
