@@ -7,26 +7,26 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded" th:fragment>
-        <a class="nav-link my-text-color active h5 " href="/">Villaton</a>
-        <a class="nav-link my-text-color active h5 " href="/property/add"
+        <a class="nav-link my-text-color active h5 " th:href="@{/}">Villaton</a>
+        <a class="nav-link my-text-color active h5 " th:href="@{/property/add}"
            sec:authorize="isAuthenticated()" >Add New Property</a>
 
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
                 <th:block sec:authorize="!isAuthenticated()">
                 <li  class="nav-item col-md-4">
-                    <a class="nav-link active h5 my-text-color" href="/users/login">Login</a>
+                    <a class="nav-link active h5 my-text-color" th:href="@{/users/login}">Login</a>
                 </li>
 
                 <li class="nav-item col-md-4"  >
-                    <a class="nav-link my-text-color active h5 " href="/users/register">Register</a>
+                    <a class="nav-link my-text-color active h5 " th:href="@{/users/register}">Register</a>
                 </li>
                 </th:block>
                 <th:block sec:authorize="isAuthenticated()">
-                <li  class="nav-item col-md-4" sec:authorize="isAuthenticated()" >
+                <li  class="nav-item col-md-4" >
                     <div class="form-inline my-2 my-lg-0">
                     <div class="my-text-color">
-                        Welcome, <th:block sec:authentication="name"></th:block>!
+                        Welcome, <th:block sec:authentication="principal.getUsername()"></th:block>!
                     </div>
                     <form th:method="post"
                           th:action="@{/users/logout}">
