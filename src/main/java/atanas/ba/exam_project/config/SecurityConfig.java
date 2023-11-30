@@ -36,7 +36,7 @@ public class SecurityConfig {
                             .loginPage("/users/login")
                             .usernameParameter("email")
                             .passwordParameter("password")
-                            .defaultSuccessUrl("/")
+                            .defaultSuccessUrl("/home")
                             .failureForwardUrl("/users/login-error");
                 }
         ).logout(
@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .invalidateHttpSession(true)
         ).build();
     }
+
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
