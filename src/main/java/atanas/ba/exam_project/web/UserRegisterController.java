@@ -29,7 +29,7 @@ public class UserRegisterController {
                                   BindingResult bindingResult){
         boolean hasRegistered = userService.register(registerUserBindingModel);
         if(hasRegistered){
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("redirect:/users/login");
         }
      return new ModelAndView("register");
     }

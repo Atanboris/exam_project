@@ -5,6 +5,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 @Entity(name = "properties")
 public class PropertyEntity extends BaseEntity {
@@ -12,20 +14,27 @@ public class PropertyEntity extends BaseEntity {
     //TODO (Validations)
 
     @Column(name = "price")
+    @Positive
     private long price;
-    @Column(name = "property_address")
+    @Column(name = "property_address",nullable = false)
+    @Size(min = 2, max = 50)
     private  String propertyAddress;
     @Enumerated(EnumType.STRING)
+    @Column(name = "property_type", nullable = false)
     private PropertyType propertyType;
     @Column(name = "bedroom_amount", nullable = false)
-    private int BedroomAmount;
+    @Positive
+    private int bedroomAmount;
     @Column(name = "bathroom_amount", nullable = false)
-    private int BathroomAmount;
+    @Positive
+    private int bathroomAmount;
     @Column(name = "area_size", nullable = false)
+    @Positive
     private int areaSize;
     @Column(name = "parking_spots", nullable = false)
+    @Positive
     private int parkingSpots;
-    @Column(name = "property_image")
+    @Column(name = "property_image", nullable = false)
     private String propertyImage;
 
     public String getPropertyImage() {
@@ -61,19 +70,19 @@ public class PropertyEntity extends BaseEntity {
     }
 
     public int getBedroomAmount() {
-        return BedroomAmount;
+        return bedroomAmount;
     }
 
     public void setBedroomAmount(int bedroomAmount) {
-        BedroomAmount = bedroomAmount;
+        this.bedroomAmount = bedroomAmount;
     }
 
     public int getBathroomAmount() {
-        return BathroomAmount;
+        return bathroomAmount;
     }
 
     public void setBathroomAmount(int bathroomAmount) {
-        BathroomAmount = bathroomAmount;
+        this.bathroomAmount = bathroomAmount;
     }
 
     public int getAreaSize() {
