@@ -20,33 +20,35 @@
             <ul class="offer-details list-group list-group-flush">
                 <li class="list-group-item">
                     <div class="card-text">
-                        <span>• Property Type</span>
+                        <span>• Property Type:</span>
                         <th:block th:text="*{propertyType}">VILLA</th:block>
                     </div>
                     <div class="card-text">
-                        <span>• Price</span>
+                        <span>• Price:</span>
                         <th:block th:text="*{price}">123</th:block>
+                    <a>$</a>
                     </div>
                     <div class="card-text">
-                        <span>• Bedroom Amount</span>
+                        <span>• Bedroom Amount:</span>
                         <th:block th:text="*{bedroomAmount}">2</th:block>
                     </div>
                     <div class="card-text">
-                        <span>• Bathroom amount</span>
+                        <span>• Bathroom amount:</span>
                         <th:block th:text="*{bathroomAmount}">2</th:block>
                     </div>
                     <div class="card-text">
-                        <span>• Area Size</span>
+                        <span>• Area Size:</span>
                         <th:block th:text="*{areaSize}">40</th:block>
+                        <a>m²</a>
                     </div>
                     <div class="card-text">
-                        <span>• Parking Spots</span>
+                        <span>• Parking Spots:</span>
                         <th:block th:text="*{parkingSpots}">1</th:block>
                     </div>
                 </li>
             </ul>
             <div class="card-body">
-                <a class="card-link" th:href="@{/offer/{offerID}(offerID=*{id})}">Details</a>
+                <a class="card-link" th:href="@{/property/{propertyID}(propertyID=*{id})}">Details</a>
             </div>
         </div>
     </div>

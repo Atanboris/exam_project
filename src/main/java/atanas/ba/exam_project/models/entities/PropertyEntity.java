@@ -8,14 +8,15 @@ import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
+import java.math.BigDecimal;
+
 @Entity(name = "properties")
 public class PropertyEntity extends BaseEntity {
 
-    //TODO (Validations)
 
     @Column(name = "price")
     @Positive
-    private long price;
+    private BigDecimal price;
     @Column(name = "property_address",nullable = false)
     @Size(min = 2, max = 50)
     private  String propertyAddress;
@@ -53,11 +54,11 @@ public class PropertyEntity extends BaseEntity {
         this.propertyAddress = propertyAddress;
     }
 
-    public long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

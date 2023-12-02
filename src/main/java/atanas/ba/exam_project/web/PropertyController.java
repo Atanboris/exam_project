@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,9 +19,10 @@ public class PropertyController {
         this.propertyService = propertyService;
     }
 
-    @GetMapping("/property-details")
-    public ModelAndView propertyDetails(){
-        return new ModelAndView("property-details");
+    @GetMapping("/property/{id}")
+    public ModelAndView propertyDetails(@PathVariable("id") Long id){
+        ModelAndView modelAndView = new ModelAndView("property-details");
+        return modelAndView;
     }
     @GetMapping("/property/add")
     public ModelAndView addProperty(@ModelAttribute("addPropertyBindingModel")

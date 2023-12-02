@@ -3,6 +3,8 @@ package atanas.ba.exam_project.models.dto;
 import atanas.ba.exam_project.models.entities.PropertyEntity;
 import atanas.ba.exam_project.models.enums.PropertyType;
 
+import java.math.BigDecimal;
+
 public class PropertyDTO {
 //     <h4><a th:href="@{property-details}">18 Old Street Miami, OR 97219</a></h4>
 //            <ul>
@@ -13,7 +15,7 @@ public class PropertyDTO {
 //              <li>Parking: <span>6 spots</span></li>
 
     private long id;
-    private long price;
+    private BigDecimal price;
     private PropertyType propertyType;
     private String propertyAddress;
     private int bedroomAmount;
@@ -44,11 +46,11 @@ public class PropertyDTO {
         this.propertyImage = propertyImage;
     }
 
-    public long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

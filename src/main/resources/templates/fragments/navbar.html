@@ -7,10 +7,12 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded" th:fragment>
-        <a class="nav-link my-text-color active h5 " th:href="@{/}">Villaton</a>
-        <a class="nav-link my-text-color active h5 " th:href="@{/property/add}"
-           sec:authorize="hasRole('ADMIN')" >Add New Property</a>
-
+        <div>
+            <a sec:authorize="isAnonymous()" class="nav-link my-text-color active h5 " th:href="@{/}">Villaton</a>
+            <a sec:authorize="isAuthenticated()" class="nav-link my-text-color active h5 " th:href="@{/properties/all}">Villaton</a>
+            <a class="nav-link my-text-color active h5 " th:href="@{/property/add}"
+                sec:authorize="hasRole('ADMIN')" >Add New Property</a>
+        </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
                 <li  class="nav-item col-md-4" sec:authorize="!isAuthenticated()">
