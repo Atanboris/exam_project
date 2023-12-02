@@ -12,7 +12,7 @@ public class PropertyDTO {
 //              <li>Floor: <span>3</span></li>
 //              <li>Parking: <span>6 spots</span></li>
 
-
+    private long id;
     private long price;
     private PropertyType propertyType;
     private String propertyAddress;
@@ -22,7 +22,10 @@ public class PropertyDTO {
     private int parkingSpots;
     private String propertyImage;
 
+    public PropertyDTO() {}
+
     public PropertyDTO(PropertyEntity property) {
+        this.id = property.getId();
         this.propertyAddress = property.getPropertyAddress();
         this.bedroomAmount = property.getBedroomAmount();
         this.bathroomAmount = property.getBathroomAmount();
@@ -96,5 +99,13 @@ public class PropertyDTO {
 
     public void setParkingSpots(int parkingSpots) {
         this.parkingSpots = parkingSpots;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

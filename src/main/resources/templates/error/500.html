@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="~{fragments/head}">
+</head>
+<body>
+<header th:replace="~{fragments/navbar}"></header>
+
+<div class="container bg-blur rounded mt-5">
+    <h5 class="text-center text-black mt-5">Something went terribly wrong</h5>
+    <h5 class="text-center text-black mt-5">Why don't we go back home?</h5>
+    <img th:src="@{/images/404-signpost.png}" alt="Signpost"
+         width="360"
+         height="540">
+    <br/>
+    <a th:href="@{/}">To Home</a>
+</div>
+</body>
+</html>

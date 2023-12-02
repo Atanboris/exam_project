@@ -25,7 +25,8 @@ public class SecurityConfig {
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
-                        .requestMatchers("/", "/users/login", "/users/register", "/users/login-error").permitAll()
+                        .requestMatchers("/", "/users/login-error").permitAll()
+                        .requestMatchers("/users/login", "/users/register").anonymous()
                         .requestMatchers("/error").permitAll()
 //                        .requestMatchers("/property/add").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
@@ -35,7 +36,7 @@ public class SecurityConfig {
                             .loginPage("/users/login")
                             .usernameParameter("email")
                             .passwordParameter("password")
-                            .defaultSuccessUrl("/home")
+                            .defaultSuccessUrl("/properties/all")
                             .failureForwardUrl("/users/login-error");
                 }
         ).logout(

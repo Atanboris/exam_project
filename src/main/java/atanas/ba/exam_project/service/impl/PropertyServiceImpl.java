@@ -7,11 +7,12 @@ import atanas.ba.exam_project.models.entities.PropertyEntity;
 import atanas.ba.exam_project.repositories.PropertyRepository;
 import atanas.ba.exam_project.service.PropertyService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PropertyServiceImpl implements PropertyService {
@@ -24,16 +25,11 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public PropertiesDTO findAllPropertiesForPropertiesPage() {
-        List<PropertyEntity> propertiesList = this.propertyRepository.findAll();
-        List<PropertyDTO> propertyDTOList = new ArrayList<>();
+    public Page<PropertyDTO> findAllPropertiesForPropertiesPage(Pageable pageable) {
+          return this.propertyRepository.findAll(pageable).map(r -> modelMapper.map(r,PropertyDTO.class));
 
-        for (PropertyEntity property:propertiesList) {
-            PropertyDTO propertyDTO = new PropertyDTO(property);
-            propertyDTOList.add(propertyDTO);
-        }
-        return new PropertiesDTO(propertyDTOList);
     }
+
 
     @Override
     public boolean addProperty(AddPropertyBindingModel addPropertyBindingModel) {
@@ -54,4 +50,5 @@ public class PropertyServiceImpl implements PropertyService {
         propertyRepository.save(property);
         return true;
     }
+
 }
