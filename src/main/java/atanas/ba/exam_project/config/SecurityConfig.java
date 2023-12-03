@@ -1,10 +1,10 @@
 package atanas.ba.exam_project.config;
 
 
-import atanas.ba.exam_project.models.enums.UserRoleEnum;
 import atanas.ba.exam_project.repositories.UserRepository;
 import atanas.ba.exam_project.service.impl.VillatonUserDetailsService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +19,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(
@@ -28,7 +29,7 @@ public class SecurityConfig {
                         .requestMatchers("/", "/users/login-error").permitAll()
                         .requestMatchers("/users/login", "/users/register").anonymous()
                         .requestMatchers("/error").permitAll()
-//                        .requestMatchers("/property/add").hasRole(UserRoleEnum.ADMIN.name())
+                        .requestMatchers("/property/add").hasRole("ADMIN")
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {
@@ -44,7 +45,14 @@ public class SecurityConfig {
                         .logoutUrl("/users/logout")
                         .logoutSuccessUrl("/")
                         .invalidateHttpSession(true)
-        ).build();
+        ).rememberMe(
+                rememberMe ->
+                        rememberMe
+                                .key("jlkjsdi1239fdopasdf0")
+                                .rememberMeParameter("rememberme")
+                                .rememberMeCookieName("rememberme")
+                )
+                .build();
     }
 
 

@@ -47,7 +47,7 @@
                 </li>
             </ul>
             <div class="card-body">
-                <form sec:authorize="hasAuthority('ADMIN')"
+                <form sec:authorize="hasRole('ADMIN')"
                       th:method="delete"
                       th:action="@{/property/{propertyId}(propertyId=*{id})}">
                     <input type="submit" value="Delete" class="link card-link"/>
