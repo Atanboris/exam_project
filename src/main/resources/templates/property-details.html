@@ -1,10 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+<head th:replace="~{fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/navbar}"></header>
+
+<div class="container-fluid">
+    <h2 class="text-center my-text-color mt-5">Details</h2>
+    <div th:object="${propertyEntity}" class="offers row mx-auto d-flex flex-row justify-content-center">
+        <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0" >
+
+            <div class="card-body pb-1 text-lg-center">
+                <h5 class="card-title" th:text="*{propertyAddress}"></h5>
+            </div>
+            <ul class="offer-details list-group list-group-flush">
+                <li class="list-group-item">
+
+                    <div class="card-text">
+                        <span>• Price</span>
+                        <th:block th:text="*{price}">123</th:block>
+                        <a>$</a>
+                    </div>
+                    <div class="card-text">
+                        <span>• Property type</span>
+                        <th:block th:text="*{propertyType.name()}">VILLA</th:block>
+                    </div>
+                    <div class="card-text">
+                        <span>• Bedroom Amount:</span>
+                        <th:block th:text="*{bedroomAmount}">2</th:block>
+                    </div>
+                    <div class="card-text">
+                        <span>• Bathroom amount:</span>
+                        <th:block th:text="*{bathroomAmount}">2</th:block>
+                    </div>
+                    <div class="card-text">
+                        <span>• Area Size:</span>
+                        <th:block th:text="*{areaSize}">40</th:block>
+                        <a>m²</a>
+                    </div>
+                    <div class="card-text">
+                        <span>• Parking Spots:</span>
+                        <th:block th:text="*{parkingSpots}">1</th:block>
+                    </div>
+                </li>
+            </ul>
+            <div class="card-body">
+                <form sec:authorize="hasAuthority('ADMIN')"
+                      th:method="delete"
+                      th:action="@{/property/{propertyId}(propertyId=*{id})}">
+                    <input type="submit" value="Delete" class="link card-link"/>
+                    <br/>
+                </form>
+                <h5>
+                <a class="text-primary" th:href="@{/property/schedule/{propertyId}(propertyId=*{id})}">Schedule a meeting?</a>
+                </h5>
+            </div>
+        </div>
+        <div class="offer card col-sm-2 col-md-3  col-lg-4 m-1 p-0">
+            <img th:src="*{propertyImage}" class="card-img-top"  alt="Car image">
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="~{fragments/footer}"></footer>
 </body>
 </html>

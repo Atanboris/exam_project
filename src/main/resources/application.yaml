@@ -19,7 +19,14 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
-  logging:
+logging:
     level:
       org.hibernate.SQL: DEBUG
       org.hibernate.orm.jdbc.bind: TRACE
+date.nager.at:
+  schema: https
+  host: date.nager.at
+  path: /api/v3/publicholidays/
+  country: AT
+  year: 2023
+  enabled: true

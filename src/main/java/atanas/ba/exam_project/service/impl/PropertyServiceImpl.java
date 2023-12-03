@@ -1,7 +1,6 @@
 package atanas.ba.exam_project.service.impl;
 
 import atanas.ba.exam_project.models.bindingModels.AddPropertyBindingModel;
-import atanas.ba.exam_project.models.dto.PropertiesDTO;
 import atanas.ba.exam_project.models.dto.PropertyDTO;
 import atanas.ba.exam_project.models.entities.PropertyEntity;
 import atanas.ba.exam_project.repositories.PropertyRepository;
@@ -11,8 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PropertyServiceImpl implements PropertyService {
@@ -49,6 +47,23 @@ public class PropertyServiceImpl implements PropertyService {
        PropertyEntity property = modelMapper.map(addPropertyBindingModel,PropertyEntity.class);
         propertyRepository.save(property);
         return true;
+    }
+
+    @Override
+    public Optional<PropertyEntity> findById(Long id) {
+
+        return propertyRepository.findById(id);
+    }
+
+    @Override
+    public PropertyEntity deleteProperty(Long id) {
+        Optional<PropertyEntity> property = propertyRepository.findById(id);
+        if(property.isPresent()){
+            propertyRepository.delete(property.get());
+            return property.get();
+        }
+
+        return null;
     }
 
 }

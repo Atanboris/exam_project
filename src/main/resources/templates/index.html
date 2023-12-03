@@ -16,14 +16,21 @@
             <br>
             Well look no further! You are currently in Villaton. One of the best places to find your own personal getaway.
         </p>
-        <th:block sec:authorize="!isAuthenticated()">
         <hr class="my-3 bg-white w-75"/>
+        <th:block sec:authorize="!isAuthenticated()">
         <h3>
             <a class="text-primary" th:href="@{/users/login}">Login</a>
             if you have an account or
             <a class="text-primary" th:href="@{/users/register}">Register</a>
             now and check our deals.
         </h3>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+            <h3>
+            Why not check all our
+            <a class="text-primary" th:href="@{/properties/all}">Properties</a>
+            ?
+            </h3>
         </th:block>
     </div>
 </main>

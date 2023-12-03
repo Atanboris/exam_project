@@ -10,10 +10,6 @@ public class HomeController {
     public ModelAndView index(){
         return new ModelAndView("index");
     }
-    @GetMapping("/properties")
-    public ModelAndView home(){
-        return new ModelAndView("properties");
-    }
     @GetMapping("/contact-us")
     public ModelAndView contactUs(){
         return new ModelAndView("contact-us");
