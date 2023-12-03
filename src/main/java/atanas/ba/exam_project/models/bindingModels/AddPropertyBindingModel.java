@@ -2,6 +2,7 @@ package atanas.ba.exam_project.models.bindingModels;
 
 import atanas.ba.exam_project.models.enums.PropertyType;
 import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.URL;
 
 public class AddPropertyBindingModel {
 
@@ -9,7 +10,6 @@ public class AddPropertyBindingModel {
     private long price;
     @NotNull(message = "Please select a type")
     private PropertyType propertyType;
-    @NotBlank(message = "Address cannot be empty")
     @Size(min = 2, max = 50, message = "Address must be between 2 and 50 characters")
     private String propertyAddress;
 
@@ -25,6 +25,7 @@ public class AddPropertyBindingModel {
     @Min(value = 0,message = "Parking spots cannot be negative")
     private int parkingSpots;
     @NotBlank(message = "Image field cannot be empty")
+    @URL
     private String propertyImage;
 
     public long getPrice() {

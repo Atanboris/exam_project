@@ -27,7 +27,7 @@ public class PropertyController {
          modelAndView.addObject(property);
         return modelAndView;
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/property/{id}")
     public ModelAndView deleteProperty(@PathVariable("id") Long id){
         propertyService.deleteProperty(id);
@@ -38,7 +38,7 @@ public class PropertyController {
                                         AddPropertyBindingModel addPropertyBindingModel){
         return new ModelAndView("add-property");
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/property/add")
     public ModelAndView addProperty(@ModelAttribute("addPropertyBindingModel") @Valid
                                     AddPropertyBindingModel addPropertyBindingModel,

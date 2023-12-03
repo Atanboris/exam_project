@@ -1,6 +1,7 @@
 package atanas.ba.exam_project.config;
 
 
+import atanas.ba.exam_project.models.enums.UserRoleEnum;
 import atanas.ba.exam_project.repositories.UserRepository;
 import atanas.ba.exam_project.service.impl.VillatonUserDetailsService;
 import org.modelmapper.ModelMapper;
@@ -29,7 +30,7 @@ public class SecurityConfig {
                         .requestMatchers("/", "/users/login-error").permitAll()
                         .requestMatchers("/users/login", "/users/register").anonymous()
                         .requestMatchers("/error").permitAll()
-                        .requestMatchers("/property/add").hasRole("ADMIN")
+                        .requestMatchers("/property/add").hasRole(UserRoleEnum.ADMIN.name())
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {
