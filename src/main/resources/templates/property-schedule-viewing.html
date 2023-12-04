@@ -1,16 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-
+>
 <head th:replace="~{fragments/head}"></head>
 <body>
 <header th:replace="~{fragments/navbar}"></header>
-
 <main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Schedule viewing</span></h1>
+    <hr class="hr-3 w-25 bg-white"/>
 
+    <form class="mx-auto w-25 bg-blur rounded"
+          th:method="POST"
+          th:action="@{/viewing/schedule/{id}(id = ${id})} "
+          th:object="${viewingBindingModel}"
+          >
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="viewingDate" class="h5 mb-2">Date of Visit:</label>
+            </div>
+            <input th:field="*{viewingDate}"
+                   th:errorclass="bg-danger"
+                    type="date" class="form-control" id="viewingDate" name="viewingDate">
+            <small th:errors="*{viewingDate}" class="text-danger"  >Date error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="time" class="h5 mb-2">Time of Day:</label>
+            </div>
+            <select th:field="*{time}"
+                    th:errorclass="bg-danger"
+                    class="browser-default custom-select" id="time" name="time">
+                <option value="9:00">9:00</option>
+                <option value="9:30">9:30</option>
+                <option value="10:00">10:00</option>
+                <option value="10:30">10:30</option>
+                <option value="11:00">11:00</option>
+                <option value="11:30">11:30</option>
+                <option value="12:00">12:00</option>
+                <option value="12:30">12:30</option>
+                <option value="13:00">13:00</option>
+                <option value="13:30">13:30</option>
+                <option value="14:00">14:00</option>
+                <option value="14:30">14:30</option>
+                <option value="15:00">15:00</option>
+                <option value="15:30">15:30</option>
+                <option value="16:00">16:00</option>
+                <option value="16:30">16:30</option>
+
+
+            </select>
+            <small class="text-danger" th:errors="*{time}" >Time error message</small>
+        </div>
+        <p th:if="${isOnHoliday}" class="errors alert alert-danger">
+            We do not work on <th:block th:text="${holidayDateEntity.name}"></th:block>.
+        </p>
+        <p th:if="${isInRepository}" class="errors alert alert-danger">
+            We already have a meeting scheduled for that time, please try another.
+        </p>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-warning  mb-3" value="Schedule">Schedule meeting</button>
+        </div>
+
+    </form>
 </main>
-
 <footer th:replace="~{fragments/footer}"></footer>
 </body>
 </html>

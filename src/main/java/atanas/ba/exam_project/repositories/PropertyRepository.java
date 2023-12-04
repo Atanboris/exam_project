@@ -10,4 +10,6 @@ import java.util.List;
 public interface PropertyRepository extends JpaRepository<PropertyEntity, Long> {
 
     List<PropertyEntity> findAll();
+
+    PropertyEntity getById(Long id);
 }

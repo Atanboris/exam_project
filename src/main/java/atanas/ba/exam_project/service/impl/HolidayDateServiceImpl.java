@@ -7,6 +7,7 @@ import atanas.ba.exam_project.service.HolidayDateService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 
 @Service
@@ -29,5 +30,10 @@ public class HolidayDateServiceImpl implements HolidayDateService {
           holidayDates.add(modelMapper.map(holiday, HolidayDateEntity.class));
         }
         holidayDateRepository.saveAll(holidayDates);
+    }
+
+    @Override
+    public HolidayDateEntity findByDate(LocalDate viewingDate) {
+        return holidayDateRepository.findByDate(viewingDate).orElse(null);
     }
 }
