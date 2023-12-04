@@ -53,17 +53,18 @@ public class ViewingServiceImpl implements ViewingService {
     @Override
     public boolean notInRepository(ViewingBindingModel viewingBindingModel, String currentUser, long id) {
         if(viewingRepository.findByViewingDateAndTime(viewingBindingModel.getViewingDate()
-                ,viewingBindingModel.getTime())){
+                ,viewingBindingModel.getTime()).isPresent()){
             return false;
         }
 
         UserEntity user = userRepository.findByEmail(currentUser).get();
-        PropertyEntity property = propertyRepository.getById(id);
+        PropertyEntity property = propertyRepository.findById(id).get();
 
         //creates and saves non-existant viewingEntity
         ViewingEntity viewingEntity = new ViewingEntity();
-        viewingEntity.setViewingDate(viewingEntity.getViewingDate());
-        viewingEntity.setTime(viewingEntity.getTime());
+        //TODO
+        viewingEntity.setViewingDate(viewingBindingModel.getViewingDate());
+        viewingEntity.setTime(viewingBindingModel.getTime());
         viewingEntity.setUser(user);
         viewingEntity.setProperty(property);
 

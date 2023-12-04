@@ -14,8 +14,11 @@ public class StringDateIsInPresentOrFutureValidator implements ConstraintValidat
 
     @Override
     public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
+        if(s.isBlank()) {
+            return false;
+        }
         LocalDate date = LocalDate.parse(s);
-        if(date.isBefore(LocalDate.now()) || s.isBlank()){
+        if(date.isBefore(LocalDate.now())){
             return false;
         };
         return true;

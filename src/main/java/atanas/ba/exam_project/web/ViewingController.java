@@ -25,23 +25,22 @@ public class ViewingController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView scheduleMeeting(@PathVariable("id")
+    public ModelAndView scheduleMeeting(@PathVariable("id") long id,
                                         @ModelAttribute("viewingBindingModel")
-                                            long id,
                                             ViewingBindingModel viewingBindingModel,
-                                            Principal principal){
+                                            Principal principal
+                                            ){
         ModelAndView modelAndView = new ModelAndView("property-schedule-viewing");
         modelAndView.addObject(viewingBindingModel);
         return modelAndView;
     }
     @PostMapping("/{id}")
-    public ModelAndView scheduleMeeting(@PathVariable("id")
+    public ModelAndView scheduleMeeting(@PathVariable("id") long id,
                                             @ModelAttribute("viewingBindingModel")
                                             @Valid
                                             ViewingBindingModel viewingBindingModel,
                                         BindingResult bindingResult,
-                                        Principal principal,
-                                        long id){
+                                        Principal principal){
         ModelAndView modelAndView = new ModelAndView("property-schedule-viewing");
         String currentUser = principal.getName();
 
@@ -53,7 +52,7 @@ public class ViewingController {
                 boolean notInRepository = this.viewingService
                         .notInRepository(viewingBindingModel,currentUser,id);
                 if(notInRepository){
-                    return new ModelAndView("redirect:/home");
+                    return new ModelAndView("redirect:/properties/all");
                 }else {
                     modelAndView.addObject("isInRepository", false);
                 }

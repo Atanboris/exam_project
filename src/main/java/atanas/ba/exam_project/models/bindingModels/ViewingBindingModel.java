@@ -1,13 +1,14 @@
 package atanas.ba.exam_project.models.bindingModels;
 
 import atanas.ba.exam_project.validation.StringDateIsInPresentOrFuture;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 
 public class ViewingBindingModel {
-    @StringDateIsInPresentOrFuture(message = "Date cannot be in the past")
+    @StringDateIsInPresentOrFuture(message = "Date cannot be in the past or empty")
     private String viewingDate;
-    @NotNull(message = "Please select a time")
+    @NotEmpty(message = "Please select a time")
     private String time;
 
 
