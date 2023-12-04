@@ -62,7 +62,7 @@ public class ViewingServiceImpl implements ViewingService {
 
         //creates and saves non-existant viewingEntity
         ViewingEntity viewingEntity = new ViewingEntity();
-        //TODO
+
         viewingEntity.setViewingDate(viewingBindingModel.getViewingDate());
         viewingEntity.setTime(viewingBindingModel.getTime());
         viewingEntity.setUser(user);
