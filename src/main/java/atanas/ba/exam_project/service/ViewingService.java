@@ -7,4 +7,6 @@ public interface ViewingService {
     boolean validSchedule(ViewingBindingModel viewingBindingModel);
 
     boolean notInRepository(ViewingBindingModel viewingBindingModel, String currentUser, long id);
+
+    void cleanUpMeetings();
 }

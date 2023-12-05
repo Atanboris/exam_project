@@ -14,6 +14,9 @@ import atanas.ba.exam_project.service.ViewingService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ViewingServiceImpl implements ViewingService {
@@ -70,5 +73,26 @@ public class ViewingServiceImpl implements ViewingService {
 
         viewingRepository.save(viewingEntity);
         return true;
+    }
+
+    @Override
+    public void cleanUpMeetings() {
+        List<ViewingEntity> viewingLists = viewingRepository.findAll();
+        LocalDate currentDate = LocalDate.now();
+        LocalTime currentTime = LocalTime.now();
+
+        List<Long> viewIdsToDelete = new ArrayList<>();
+        for (ViewingEntity view:viewingLists) {
+            LocalDate viewCurrentDate =LocalDate.parse(view.getViewingDate());
+            LocalTime viewCurrentTime = LocalTime.parse(view.getTime());
+
+            if(viewCurrentTime.isBefore(currentTime)) {
+
+                if (viewCurrentDate.isBefore(currentDate)) {
+                  viewIdsToDelete.add(view.getId());
+                }
+            }
+        }
+        viewingRepository.deleteAllById(viewIdsToDelete);
     }
 }
