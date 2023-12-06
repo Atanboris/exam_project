@@ -13,4 +13,5 @@ public interface PropertyRepository extends JpaRepository<PropertyEntity, Long> 
     List<PropertyEntity> findAll();
 
     Optional<PropertyEntity> findById(Long id);
+    Optional<PropertyEntity> findByPropertyAddress(String propertyAddress);
 }

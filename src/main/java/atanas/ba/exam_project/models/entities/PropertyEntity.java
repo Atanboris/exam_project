@@ -38,6 +38,22 @@ public class PropertyEntity extends BaseEntity {
     @Column(name = "property_image", nullable = false)
     private String propertyImage;
 
+    public PropertyEntity(BigDecimal price, String propertyAddress, PropertyType propertyType,
+                          int bedroomAmount, int bathroomAmount, int areaSize,
+                          int parkingSpots, String propertyImage) {
+        this.price = price;
+        this.propertyAddress = propertyAddress;
+        this.propertyType = propertyType;
+        this.bedroomAmount = bedroomAmount;
+        this.bathroomAmount = bathroomAmount;
+        this.areaSize = areaSize;
+        this.parkingSpots = parkingSpots;
+        this.propertyImage = propertyImage;
+    }
+
+    public PropertyEntity() {
+    }
+
     public String getPropertyImage() {
         return propertyImage;
     }

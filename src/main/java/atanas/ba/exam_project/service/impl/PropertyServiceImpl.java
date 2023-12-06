@@ -37,11 +37,11 @@ public class PropertyServiceImpl implements PropertyService {
         if(addPropertyBindingModel.getPropertyAddress().isBlank()
         || addPropertyBindingModel.getPropertyImage().isBlank()
         || addPropertyBindingModel.getPropertyType() == null
-        || addPropertyBindingModel.getAreaSize() > 0
-        || addPropertyBindingModel.getBedroomAmount() > 0
-        || addPropertyBindingModel.getBathroomAmount() > 0
-        || addPropertyBindingModel.getPrice() > 0
-        ||addPropertyBindingModel.getParkingSpots() > 0){
+        || addPropertyBindingModel.getAreaSize() <= 0
+        || addPropertyBindingModel.getBedroomAmount() <= 0
+        || addPropertyBindingModel.getBathroomAmount() <= 0
+        || addPropertyBindingModel.getPrice() <= 0
+        || addPropertyBindingModel.getParkingSpots() < 0){
             return false;
         }
        PropertyEntity property = modelMapper.map(addPropertyBindingModel,PropertyEntity.class);
