@@ -5,7 +5,7 @@
 <body>
 <header th:replace="~{fragments/navbar}"></header>
 <<div class="container-fluid">
-    <h2 class="text-center text-white mt-5">All Offers</h2>
+    <h2 class="text-center mt-2"><span class="badge badge-pill badge-dark">All Offers</span></h2>
     <div class="offers row mx-auto d-flex flex-row justify-content-center">
         <div
                 th:each="property: ${properties.getContent()}"

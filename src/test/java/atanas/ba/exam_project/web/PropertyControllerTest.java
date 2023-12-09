@@ -33,6 +33,6 @@ class PropertyControllerTest {
                             .param("price", "123000")
                             .with(csrf())
             ).andExpect(status().is3xxRedirection())
-                    .andExpect(view().name("redirect:/home"));
+                    .andExpect(view().name("redirect:/properties/all"));
     }
 }

@@ -1,4 +1,4 @@
-package atanas.ba.exam_project.config.init;
+package atanas.ba.exam_project.init;
 
 import atanas.ba.exam_project.config.DateNagerConfig;
 import atanas.ba.exam_project.models.dto.HolidayDateDTO;

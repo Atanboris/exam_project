@@ -5,6 +5,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
@@ -33,7 +34,7 @@ public class PropertyEntity extends BaseEntity {
     @Positive
     private int areaSize;
     @Column(name = "parking_spots", nullable = false)
-    @Positive
+    @Min(value = 0)
     private int parkingSpots;
     @Column(name = "property_image", nullable = false)
     private String propertyImage;

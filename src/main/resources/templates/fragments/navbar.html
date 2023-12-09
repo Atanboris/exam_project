@@ -8,28 +8,30 @@
 <header>
     <nav class="navbar navbar-expand-lg bg-nav rounded" th:fragment>
         <div>
-            <a sec:authorize="isAnonymous()" class="nav-link my-text-color active h5 " th:href="@{/}">Villaton</a>
-            <a sec:authorize="isAuthenticated()" class="nav-link my-text-color active h5 " th:href="@{/properties/all}">Villaton</a>
-            <a class="nav-link my-text-color active h5 " th:href="@{/property/add}"
+            <a sec:authorize="isAnonymous()" class="nav-link my-text-color active h5 badge-light badge-pill" th:href="@{/}">Villaton</a>
+            <a sec:authorize="isAuthenticated()" class="nav-link my-text-color active h5 badge-light badge-pill" th:href="@{/properties/all}">Villaton</a>
+        </div>
+        <div>
+            <a class="nav-link my-text-color active h5 badge-light badge-pill" th:href="@{/property/add}"
                 sec:authorize="hasRole('ADMIN')" >Add New Property</a>
         </div>
         <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav row">
-                <li  class="nav-item col-md-4" sec:authorize="!isAuthenticated()">
-                    <a class="nav-link active h5 my-text-color" th:href="@{/users/login}">Login</a>
+                <li  class="nav-item col-md-4 " sec:authorize="!isAuthenticated()">
+                    <a class="nav-link active h5 my-text-color badge-light badge-pill" th:href="@{/users/login}">Login</a>
                 </li>
 
                 <li class="nav-item col-md-4" sec:authorize="!isAuthenticated()" >
-                    <a class="nav-link my-text-color active h5 " th:href="@{/users/register}">Register</a>
+                    <a class="nav-link my-text-color active h5 badge-light badge-pill" th:href="@{/users/register}">Register</a>
                 </li>
-                <li  class="nav-item col-md-4" sec:authorize="isAuthenticated()">
-                    <div class="form-inline my-2 my-lg-0">
-                    <div class="my-text-color ">
+                <li  class="nav-item col-md-4 " sec:authorize="isAuthenticated()">
+                    <div class="form-inline my-2 my-lg-0 ">
+                    <div class="my-text-color badge-light badge-pill">
                         Welcome, <th:block sec:authentication="name"></th:block>!
                     </div>
                     <form th:method="post"
                           th:action="@{/users/logout}">
-                        <input type="submit" class="btn btn-link" value="Logout"/>
+                        <input type="submit" class="btn btn-link btn-outline-light bg-light" value="Logout"/>
                     </form>
                     </div>
                 </li>

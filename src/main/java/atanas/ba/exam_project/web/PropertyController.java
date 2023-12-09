@@ -45,7 +45,7 @@ public class PropertyController {
                                     BindingResult bindingResult){
         boolean hasPropertyBeenAdded = this.propertyService.addProperty(addPropertyBindingModel);
         if(hasPropertyBeenAdded){
-            return new ModelAndView("redirect:/home");
+            return new ModelAndView("redirect:/properties/all");
         }
         return new ModelAndView("add-property");
     }

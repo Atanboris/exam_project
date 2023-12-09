@@ -6,6 +6,7 @@ import atanas.ba.exam_project.models.entities.UserRoleEntity;
 import atanas.ba.exam_project.models.enums.UserRoleEnum;
 import atanas.ba.exam_project.repositories.UserRepository;
 import atanas.ba.exam_project.repositories.UserRoleRepository;
+import atanas.ba.exam_project.service.UserRoleService;
 import atanas.ba.exam_project.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,14 +18,14 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
-    private final UserRoleRepository userRoleRepository;
+    private final UserRoleService userRoleService;
 
     private ModelMapper modelMapper;
     private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
+    public UserServiceImpl(UserRepository userRepository, UserRoleService userRoleService, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
         this.userRepository = userRepository;
-        this.userRoleRepository = userRoleRepository;
+        this.userRoleService = userRoleService;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
     }
@@ -33,6 +34,7 @@ public class UserServiceImpl implements UserService {
     public boolean register(RegisterUserBindingModel registerUserBindingModel) {
         if(registerUserBindingModel.getEmail().isBlank()
         || userRepository.findByEmail(registerUserBindingModel.getEmail()).isPresent()
+                || registerUserBindingModel.getPassword().isBlank()
         || !registerUserBindingModel.getPassword().equals(registerUserBindingModel.getConfirmPassword())){
             return false;
         }
@@ -43,7 +45,7 @@ public class UserServiceImpl implements UserService {
         registeredUser.setPassword(newPassword);
 
         List<UserRoleEntity> roleList = new ArrayList<>();
-        roleList.add(userRoleRepository.findByRole(UserRoleEnum.USER));
+        roleList.add(userRoleService.findByRole(UserRoleEnum.USER));
 
         userRepository.save(registeredUser);
 
