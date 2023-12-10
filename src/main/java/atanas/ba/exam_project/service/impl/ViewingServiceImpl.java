@@ -1,15 +1,12 @@
 package atanas.ba.exam_project.service.impl;
 
 import atanas.ba.exam_project.models.bindingModels.ViewingBindingModel;
-import atanas.ba.exam_project.models.entities.HolidayDateEntity;
 import atanas.ba.exam_project.models.entities.PropertyEntity;
 import atanas.ba.exam_project.models.entities.UserEntity;
 import atanas.ba.exam_project.models.entities.ViewingEntity;
-import atanas.ba.exam_project.repositories.HolidayDateRepository;
 import atanas.ba.exam_project.repositories.PropertyRepository;
 import atanas.ba.exam_project.repositories.UserRepository;
 import atanas.ba.exam_project.repositories.ViewingRepository;
-import atanas.ba.exam_project.service.HolidayDateService;
 import atanas.ba.exam_project.service.ViewingService;
 import org.springframework.stereotype.Service;
 
@@ -94,5 +91,10 @@ public class ViewingServiceImpl implements ViewingService {
             }
         }
         viewingRepository.deleteAllById(viewIdsToDelete);
+    }
+
+    @Override
+    public void deleteAllByProperty(PropertyEntity property) {
+        viewingRepository.deleteAllByProperty(property);
     }
 }

@@ -5,6 +5,8 @@ import atanas.ba.exam_project.models.dto.PropertyDTO;
 import atanas.ba.exam_project.models.entities.PropertyEntity;
 import atanas.ba.exam_project.repositories.PropertyRepository;
 import atanas.ba.exam_project.service.PropertyService;
+import atanas.ba.exam_project.service.ViewingService;
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,10 +17,12 @@ import java.util.Optional;
 @Service
 public class PropertyServiceImpl implements PropertyService {
     private PropertyRepository propertyRepository;
+    private ViewingService viewingService;
     private ModelMapper modelMapper;
 
-    public PropertyServiceImpl(PropertyRepository propertyRepository, ModelMapper modelMapper) {
+    public PropertyServiceImpl(PropertyRepository propertyRepository, ViewingService viewingService, ModelMapper modelMapper) {
         this.propertyRepository = propertyRepository;
+        this.viewingService = viewingService;
         this.modelMapper = modelMapper;
     }
 
@@ -56,9 +60,11 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
+    @Transactional
     public PropertyEntity deleteProperty(Long id) {
         Optional<PropertyEntity> property = propertyRepository.findById(id);
         if(property.isPresent()){
+            viewingService.deleteAllByProperty(property.get());
             propertyRepository.delete(property.get());
             return property.get();
         }
